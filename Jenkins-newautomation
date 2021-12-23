@@ -36,7 +36,7 @@ pipeline{
                   nexusVersion: 'nexus3', 
                   protocol: 'http', 
                   repository: 'sample-snapshot', 
-                  version: '8.2.1-snapshot'  
+                  version: '8.2.1-SNAPSHOT'  
               }
             }
         stage("deploy-dev"){
