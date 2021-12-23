@@ -32,7 +32,7 @@ pipeline{
                     ssh ec2-user@3.101.31.82 /home/ec2-user/apache-tomcat-9.0.56/bin/startup.sh
                 
                 """
-            }
+               }
             
             }
         }
