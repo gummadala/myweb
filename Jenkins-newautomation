@@ -10,15 +10,16 @@ pipeline{
     stages{
         stage("Git Checkout"){
             steps{
-                git credentialsId: 'javahome2', url: 'https://github.com/srinivas1987devops/myweb.git'
+                git credentialsId: '6b0595de-ca14-4d2b-b36f-44ad81fb4d60', url: 'https://github.com/gummadala/myweb.git'
             }
         }
+        
         stage("Maven Build"){
             steps{
-                sh "mvn clean sonar:sonar package"
-                
+                sh "mvn clean sonar:sonar package"     
             }
         }
+        
         stage('Upload War To Nexus'){
             steps{
                   nexusArtifactUploader artifacts: [
