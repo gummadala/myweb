@@ -12,19 +12,19 @@ pipeline{
         }
         stage("Maven Build"){
             steps{
-                sh "mvn clean package"
-                sh "mv target/*.war target/myweb.war"
+                sh "mvn clean sonar:sonar package"
+                
             }
         }
         stage("deploy-dev"){
             steps{
                 sshagent(['raja']) {
                 sh """
-                    scp -o StrictHostKeyChecking=no target/myweb.war ec2-user@54.176.125.199:/home/ec2-user/apache-tomcat-9.0.56/webapps/
+                    scp -o StrictHostKeyChecking=no target/myweb.war ec2-user@172.31.27.97:/home/ec2-user/apache-tomcat-9.0.58/webapps/
                     
-                    ssh ec2-user@54.176.125.199 /home/ec2-user/apache-tomcat-9.0.56/bin/shutdown.sh
+                    ssh ec2-user@172.31.27.97 /home/ec2-user/apache-tomcat-9.0.58/bin/shutdown.sh
                     
-                    ssh ec2-user@54.176.125.199 /home/ec2-user/apache-tomcat-9.0.56/bin/startup.sh
+                    ssh ec2-user@172.31.27.97 /home/ec2-user/apache-tomcat-9.0.58/bin/startup.sh
                 
                 """
             }
